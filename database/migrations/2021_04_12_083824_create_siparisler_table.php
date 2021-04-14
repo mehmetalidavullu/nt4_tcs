@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateSiparislerTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('siparisler', function (Blueprint $table) {
+            $table->integerIncrements('id');
+            $table->string('siparisno',50);
+            $table->timestamp('tarih')->useCurrent();
+            $table->dateTime('gonderimtarihi')->default(NULL)->nullable();
+            $table->string('firmaid', 255)->default(0);
+            $table->integer('adresid');
+            $table->mediumText('aciklama')->default(NULL)->nullable();
+            $table->string('email', 255);
+            $table->string('odemetipi', 255);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('siparisler');
+    }
+}
